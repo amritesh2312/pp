@@ -1,0 +1,47 @@
+package com.cg.cms.dto;
+
+public class PassengerDetail {
+
+
+	
+	
+	private int bookingid;
+	private String passengerName;
+	private int AirlineNo;
+	
+	public PassengerDetail()
+	{
+		
+	}
+	
+	public PassengerDetail(int bookingid, String passengerName, int airlineNo) {
+		super();
+		this.bookingid = bookingid;
+		this.passengerName = passengerName;
+		AirlineNo = airlineNo;
+	}
+	public int getBookingid() {
+		return bookingid;
+	}
+	public void setBookingid(int bookingid) {
+		this.bookingid = bookingid;
+	}
+	public String getPassengerName() {
+		return passengerName;
+	}
+	public void setPassengerName(String passengerName) {
+		this.passengerName = passengerName;
+	}
+	public int getAirlineNo() {
+		return AirlineNo;
+	}
+	public void setAirlineNo(int airlineNo) {
+		AirlineNo = airlineNo;
+	}
+	@Override
+	public String toString() {
+		return "PassengerDetail [bookingid=" + bookingid + ", passengerName="
+				+ passengerName + ", AirlineNo=" + AirlineNo + "]";
+	}
+	
+}
