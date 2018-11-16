@@ -1,0 +1,76 @@
+public void PassengerDetails(int bookingid, int flightno, String PassengerName)
+	{
+		String sql="insert into PassengerDetails values(?,?,?)";
+		PreparedStatement ps;
+		try {
+			ps = connection.prepareStatement(sql);
+			ps.setInt(1, bookingid);
+			ps.setString(2, PassengerName);
+			ps.setInt(3,flightno);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	public int FlightOccupancy(int Flightno)
+	{
+		int a=0;
+		String sql="SELECT seats FROM FlightInformation WHERE flightno=?";
+		PreparedStatement pst;
+		try {
+			pst = connection.prepareStatement(sql);
+			pst.setInt(1, Flightno);
+			ResultSet rst = pst.executeQuery();
+		    rst.next();
+		    a = rst.getInt(1);
+		    
+		    
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return a;
+	
+		
+	}
+	
+	
+	
+	public List<PassengerDetail> ListAllPassengers(int flightno)
+	{
+		
+		String sql = "SELECT * FROM PassengerInformation2 where flightno=?";
+		ArrayList<PassengerDetail> clist = new ArrayList<>();
+		
+		Statement st;
+		try {
+			st = connection.createStatement();
+			PreparedStatement pst= connection.prepareStatement(sql);
+			pst.setInt(1,flightno );
+			ResultSet rst = st.executeQuery(sql);
+			while(rst.next()){
+				
+				PassengerDetail m = new PassengerDetail();
+				m.setBookingid(rst.getInt("bookingid"));
+				m.setPassengerName(rst.getString("passengerName"));
+				m.setAirlineNo(rst.getInt("airlineNo"));
+				
+				clist.add(m);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+		
+		return clist;
+	}
+	
+	
